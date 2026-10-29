@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Happy Birthday Vishal Bhai 🎂</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;
+font-family:Arial,sans-serif;text-align:center;color:white;
+background:radial-gradient(circle at top,#5925a0,#150622 70%)}
+.card{margin:20px;padding:30px 20px;max-width:430px;width:90%;
+border:1px solid #ffe49b;border-radius:25px;
+background:#ffffff12;box-shadow:0 0 35px #d05cff66}
+.crown{font-size:65px;animation:bob 1.5s infinite}
+h1{color:#ffe49b;font-size:38px}
+p{line-height:1.8}
+button{padding:15px 22px;border:0;border-radius:30px;
+font-size:16px;font-weight:bold;background:#ffe49b;color:#321044}
+#gift{display:none}
+#confetti{position:fixed;inset:0;pointer-events:none}
+@keyframes bob{50%{transform:translateY(-10px)}}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="card">
+<div class="crown">👑</div>
+<p>⚜ EK SPECIAL SURPRISE ⚜</p>
+<h1>Vishal Bhai!</h1>
+<p>Bhai, aaj ka din sirf tere naam! 🎉</p>
+<button id="btn" onclick="openGift()">🎁 Surprise Kholo</button>
+<div id="gift">
+<h1>🎂 HAPPY BIRTHDAY 🎂</h1>
+<p>Bhai, tu hamesha khush rahe, life mein khoob tarakki kare aur tere saare sapne poore hon! ❤️</p>
+<p>Apni dosti hamesha solid rahe. Har din ek nayi success mile aur har saal pehle se zyada zabardast ho! 🔥</p>
+<div style="font-size:60px">🎉🥳🎊</div>
+<h2>Vishal Bhai — The King! 👑</h2>
+<p>Made with ❤️ by your friend</p>
+</div>
+</div>
+<script>
+function openGift(){
+ document.getElementById('gift').style.display='block';
+ document.getElementById('btn').style.display='none';
+ let c=document.getElementById('confetti'),x=c.getContext('2d');
+ c.width=innerWidth;c.height=innerHeight;
+ let a=Array.from({length:180},()=>({
+  x:Math.random()*c.width,y:-Math.random()*c.height,
+  v:2+Math.random()*5,s:3+Math.random()*5,
+  color:['#ffe49b','#ff65cb','#73f5ff','#ffffff'][Math.floor(Math.random()*4)]
+ }));
+ let n=0;
+ function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  a.forEach(p=>{p.y+=p.v;p.x+=Math.sin(p.y/25);
+  x.fillStyle=p.color;x.fillRect(p.x,p.y,p.s,p.s)});
+  if(n++<180)requestAnimationFrame(draw);
+ }
+ draw();
+}
+</script>
+</body>
+</html>
